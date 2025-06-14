@@ -1,0 +1,25 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install --legacy-peer-deps",
+  "devCommand": "npm run dev",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "develop": false
+    }
+  },
+  "github": {
+    "enabled": true,
+    "autoAlias": false,
+    "silent": true,
+    "autoJobCancelation": true
+  },
+  "functions": {
+    "src/app/**/*.{js,ts,tsx}": {
+      "maxDuration": 30
+    }
+  },
+  "regions": ["sin1"],
+  "framework": "nextjs"
+}

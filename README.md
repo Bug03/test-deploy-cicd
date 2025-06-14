@@ -96,7 +96,67 @@ my-next-app/
 └── tsconfig.json               # TypeScript configuration
 ```
 
-## 🚀 Cài đặt và chạy dự án
+## � Git Flow & Development Workflow
+
+Dự án sử dụng **Git Flow** chuẩn với **Conventional Commits** để đảm bảo quy trình phát triển chuyên nghiệp.
+
+### 🌿 Branching Strategy
+
+- **`main`**: Production branch (code đã release)
+- **`develop`**: Development branch (tích hợp features)
+- **`feature/*`**: Feature development branches
+- **`release/*`**: Release preparation branches  
+- **`hotfix/*`**: Emergency fix branches
+
+### 🚀 Quick Start
+
+```bash
+# Bắt đầu feature mới
+npm run git:feature user-authentication
+
+# Kiểm tra status
+npm run git:status
+
+# Hoàn thành feature (push và tạo PR)
+npm run git:finish
+
+# Cleanup sau khi merge PR
+npm run git:cleanup
+```
+
+### 📝 Conventional Commits Examples
+
+```bash
+feat(todo): add due date functionality
+fix(ui): resolve button alignment issue
+docs(readme): update installation guide
+style(components): improve code formatting
+refactor(hooks): optimize todo state management
+test(filters): add unit tests for search function
+chore(deps): update dependencies
+```
+
+### 🛠️ Manual Git Flow Commands
+
+```bash
+# Script helper
+./scripts/git-flow.sh feature todo-export
+./scripts/git-flow.sh release v1.1.0
+./scripts/git-flow.sh hotfix v1.0.1
+./scripts/git-flow.sh status
+
+# Raw Git commands
+git checkout develop
+git pull origin develop
+git checkout -b feature/todo-categories
+# ... work and commit ...
+git push origin feature/todo-categories
+# Create PR develop ← feature/todo-categories
+```
+
+Xem chi tiết trong [DEVELOPMENT.md](./DEVELOPMENT.md)
+
+---
 
 ### Yêu cầu hệ thống
 - **Node.js** >= 18.0.0
