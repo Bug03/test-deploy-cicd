@@ -8,6 +8,13 @@
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 !.yarn/versions
 
 # testing
