@@ -11,8 +11,8 @@
   },
   "github": {
     "enabled": true,
-    "autoAlias": false,
-    "silent": true,
+    "autoAlias": true,
+    "silent": false,
     "autoJobCancelation": true
   },
   "functions": {
@@ -21,5 +21,7 @@
     }
   },
   "regions": ["sin1"],
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "cleanUrls": true,
+  "trailingSlash": false
 }

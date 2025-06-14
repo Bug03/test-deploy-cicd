@@ -309,4 +309,67 @@ Dự án này được thiết kế để bạn học:
 **Happy Coding!** 🚀
 
 *Dự án này được xây dựng với mục đích học tập và có thể được sử dụng làm template cho các dự án thực tế.*
-# test-deploy-cicd
+
+## 🚀 Deployment Setup
+
+### Vercel Production Deployment
+
+This project is configured for automatic deployment to Vercel with the following workflow:
+
+#### 1. **Automatic Deployment Triggers**
+- ✅ **Main Branch**: Auto-deploy to production when merged
+- ✅ **Pull Requests**: Generate preview deployments
+- ✅ **Feature Branches**: Skipped (saves build minutes)
+
+#### 2. **Setup Vercel Secrets** (Required for auto-deployment)
+
+Add these secrets to your GitHub repository:
+
+```bash
+# Get these values from your Vercel dashboard
+VERCEL_TOKEN=your_vercel_token
+VERCEL_ORG_ID=your_org_id  
+VERCEL_PROJECT_ID=your_project_id
+```
+
+**How to get these values:**
+
+1. **VERCEL_TOKEN**: 
+   - Go to [Vercel Account Settings](https://vercel.com/account/tokens)
+   - Create a new token with appropriate scope
+
+2. **VERCEL_ORG_ID & VERCEL_PROJECT_ID**:
+   - Run `vercel link` in your project
+   - Check `.vercel/project.json` for the IDs
+
+#### 3. **Deployment Configuration**
+
+```json
+// vercel.json
+{
+  "git": {
+    "deploymentEnabled": {
+      "main": true,      // ✅ Deploy main branch
+      "develop": false   // ❌ Skip develop branch
+    }
+  },
+  "github": {
+    "autoAlias": true,   // ✅ Auto-assign production domain
+    "silent": false      // ✅ Show deployment status
+  }
+}
+```
+
+#### 4. **Deployment Workflow**
+
+1. **Create Feature Branch**: `npm run git:feature`
+2. **Develop & Commit**: Make changes with conventional commits
+3. **Create Pull Request**: PR creates preview deployment
+4. **Merge to Main**: Triggers automatic production deployment
+5. **Live on Production**: Changes go live automatically
+
+#### 5. **Branch Protection**
+
+- Only `main` branch triggers production deployments
+- All other branches are ignored to save build minutes
+- Use `scripts/vercel-ignore-build.sh` for custom build logic
