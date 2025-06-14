@@ -1,26 +1,143 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Space Theme Colors */
+    --space-dark: #0b0d17;
+    --space-blue: #1e293b;
+    --space-purple: #3730a3;
+    --space-cyan: #06b6d4;
+    --space-pink: #ec4899;
+    --space-yellow: #f59e0b;
+    --space-green: #10b981;
+    --space-orange: #f97316;
+
+    /* Gradients */
+    --cosmic-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --nebula-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --galaxy-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --aurora-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+
+    /* Text Colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-accent: #06b6d4;
+
+    /* Background */
+    --background: var(--space-dark);
+    --foreground: var(--text-primary);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Pixel Art Animations */
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes glow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.3);
+    }
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes slideInFromSpace {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Pixel Perfect Borders */
+.pixel-border {
+    border-image: linear-gradient(45deg, transparent 30%, var(--space-cyan) 30%, var(--space-cyan) 70%, transparent 70%)
+        1;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.pixel-border-glow {
+    border: 2px solid var(--space-cyan);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.3), inset 0 0 10px rgba(6, 182, 212, 0.1);
+}
+
+/* Stars Background */
+.stars-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    z-index: -1;
+    pointer-events: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Space Mono", "Courier New", monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Pixel Perfect Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--space-dark);
+    border: 2px solid var(--space-blue);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--space-cyan), var(--space-purple));
+    border-radius: 0;
+    border: 1px solid var(--space-cyan);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--space-purple), var(--space-pink));
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .stars-bg::before {
+        background-size: 150px 75px;
+    }
 }
