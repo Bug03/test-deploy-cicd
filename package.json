@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "git:feature": "scripts/git-flow.sh feature",
+    "git:finish": "scripts/git-flow.sh finish",
+    "git:status": "scripts/git-flow.sh status",
+    "git:cleanup": "scripts/git-flow.sh cleanup",
+    "release": "scripts/git-flow.sh release",
+    "hotfix": "scripts/git-flow.sh hotfix"
   },
   "dependencies": {
     "react": "^19.0.0",
