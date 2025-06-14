@@ -1,6 +1,6 @@
 'use client';
 
-import { Todo } from '@/types';
+import { Todo, TodoFormData } from '@/types';
 import { TodoItem } from './TodoItem';
 import { Button } from '@/components/ui';
 
@@ -8,7 +8,7 @@ interface TodoListProps {
   todos: Todo[];
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
-  onUpdate: (id: string, data: any) => void;
+  onUpdate: (id: string, data: TodoFormData) => void;
   onToggleAll: (completed: boolean) => void;
   onClearCompleted: () => void;
 }
