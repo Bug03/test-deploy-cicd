@@ -107,77 +107,83 @@ export function TodoForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <Input
-        label="Tên Nhiệm Vụ"
-        placeholder="Nhập tên nhiệm vụ..."
-        value={formData.title}
-        onChange={handleChange('title')}
-        error={errors.title}
-        variant="cosmic"
-      />
+    <div className="w-full max-w-full">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-4">
+          <Input
+            label="Tên Nhiệm Vụ"
+            placeholder="Nhập tên nhiệm vụ..."
+            value={formData.title}
+            onChange={handleChange('title')}
+            error={errors.title}
+            variant="cosmic"
+          />
 
-      <Textarea
-        label="Mô Tả Chi Tiết"
-        placeholder="Mô tả chi tiết nhiệm vụ (tùy chọn)..."
-        value={formData.description}
-        onChange={handleChange('description')}
-        error={errors.description}
-        rows={3}
-        variant="cosmic"
-      />
+          <Textarea
+            label="Mô Tả Chi Tiết"
+            placeholder="Mô tả chi tiết nhiệm vụ (tùy chọn)..."
+            value={formData.description}
+            onChange={handleChange('description')}
+            error={errors.description}
+            rows={3}
+            variant="cosmic"
+          />
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Select
-          label="Độ Ưu Tiên"
-          value={formData.priority}
-          onChange={handleChange('priority')}
-          options={PRIORITY_OPTIONS}
-          error={errors.priority}
-          variant="cosmic"
-        />
+        <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Select
+              label="Độ Ưu Tiên"
+              value={formData.priority}
+              onChange={handleChange('priority')}
+              options={PRIORITY_OPTIONS}
+              error={errors.priority}
+              variant="cosmic"
+            />
 
-        <Select
-          label="Danh Mục"
-          value={formData.category}
-          onChange={handleChange('category')}
-          options={CATEGORY_OPTIONS}
-          error={errors.category}
-          variant="cosmic"
-        />
-      </div>
+            <Select
+              label="Danh Mục"
+              value={formData.category}
+              onChange={handleChange('category')}
+              options={CATEGORY_OPTIONS}
+              error={errors.category}
+              variant="cosmic"
+            />
+          </div>
 
-      <Input
-        label="Ngày Hết Hạn"
-        type="date"
-        value={formData.dueDate}
-        onChange={handleChange('dueDate')}
-        error={errors.dueDate}
-        variant="cosmic"
-      />
+          <Input
+            label="Ngày Hết Hạn"
+            type="date"
+            value={formData.dueDate}
+            onChange={handleChange('dueDate')}
+            error={errors.dueDate}
+            variant="cosmic"
+          />
+        </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 pt-4">
-        <Button 
-          type="submit" 
-          variant="cosmic" 
-          className="flex-1 text-base"
-          glow={true}
-        >
-          <span className="mr-2">🚀</span>
-          {submitLabel}
-        </Button>
-        {onCancel && (
+        <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t-2 border-slate-600">
           <Button 
-            type="button" 
-            variant="secondary" 
-            onClick={onCancel}
-            className="sm:w-auto"
+            type="submit" 
+            variant="cosmic" 
+            className="flex-1 text-base font-bold"
+            glow={true}
           >
-            <span className="mr-2">❌</span>
-            Hủy
+            <span className="mr-2">🚀</span>
+            {submitLabel}
           </Button>
-        )}
-      </div>
-    </form>
+          {onCancel && (
+            <Button 
+              type="button" 
+              variant="secondary" 
+              onClick={onCancel}
+              className="sm:w-auto"
+            >
+              <span className="mr-2">❌</span>
+              Hủy
+            </Button>
+          )}
+        </div>
+      </form>
+    </div>
   );
 }

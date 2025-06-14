@@ -98,26 +98,28 @@ export function TodoApp() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
           {/* Left sidebar - Form và Stats */}
-          <div className="lg:col-span-4 xl:col-span-3 space-y-6">
+          <div className="lg:col-span-4 xl:col-span-4 space-y-6">
             {/* Todo Form */}
-            <div className="bg-slate-800/30 backdrop-blur-md border-2 border-slate-600 pixel-border-glow p-4 md:p-6 hover:border-cyan-400 transition-all duration-300">
+            <div className="bg-slate-800/30 backdrop-blur-md border-2 border-slate-600 pixel-border-glow p-4 md:p-6 hover:border-cyan-400 transition-all duration-300 w-full overflow-hidden">
               <h2 className="text-lg md:text-xl font-bold text-cyan-300 mb-6 font-mono tracking-wider flex items-center">
                 <span className="text-2xl mr-3">➕</span>
                 NHIỆM VỤ MỚI
               </h2>
-              <TodoForm onSubmit={createTodo} />
+              <div className="w-full overflow-hidden">
+                <TodoForm onSubmit={createTodo} />
+              </div>
             </div>
 
             {/* Stats */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <TodoStats stats={stats} />
             </div>
           </div>
 
           {/* Main content - Filters và TodoList */}
-          <div className="lg:col-span-8 xl:col-span-9 space-y-6">
+          <div className="lg:col-span-8 xl:col-span-8 space-y-6">
             {/* Mobile Stats */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <TodoStats stats={stats} />
             </div>
             

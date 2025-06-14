@@ -27,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
     }
 
     const baseStyles = `
-        flex h-12 w-full px-4 py-3 text-sm font-mono transition-all duration-300 
+        flex h-12 w-full min-w-0 px-4 py-3 text-sm font-mono transition-all duration-300 
         focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50
         pixel-border-glow hover:shadow-[0_0_10px_rgba(6,182,212,0.2)]
         ${getVariantStyles()}
@@ -38,23 +38,23 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
     const classes = `${baseStyles} ${errorStyles} ${className}`
 
     return (
-        <div className="w-full space-y-2">
+        <div className="w-full min-w-0 space-y-2">
             {label && (
-                <label className="block text-sm font-bold text-cyan-300 mb-2 font-mono tracking-wider">
+                <label className="block text-sm font-bold text-cyan-300 mb-2 font-mono tracking-wider overflow-hidden text-ellipsis">
                     🚀 {label}
                 </label>
             )}
-            <div className="relative group">
+            <div className="relative group w-full">
                 <input
                     className={classes}
                     ref={ref}
                     {...props}
                 />
                 {/* Glow effect on focus */}
-                <div className="absolute inset-0 rounded-none border-2 border-transparent group-focus-within:border-cyan-400 group-focus-within:shadow-[0_0_20px_rgba(6,182,212,0.1)] pointer-events-none transition-all duration-300" />
+                <div className="absolute inset-0 border-2 border-transparent group-focus-within:border-cyan-400 group-focus-within:shadow-[0_0_20px_rgba(6,182,212,0.1)] pointer-events-none transition-all duration-300" />
             </div>
             {error && (
-                <p className="mt-2 text-sm text-red-400 font-mono flex items-center">
+                <p className="mt-2 text-sm text-red-400 font-mono flex items-center break-words">
                     ⚠️ {error}
                 </p>
             )}
