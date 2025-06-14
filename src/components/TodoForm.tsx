@@ -12,18 +12,18 @@ interface TodoFormProps {
 }
 
 const PRIORITY_OPTIONS = [
-  { value: 'low', label: 'Thấp' },
-  { value: 'medium', label: 'Trung bình' },
-  { value: 'high', label: 'Cao' },
+  { value: 'low', label: '🟢 Thấp' },
+  { value: 'medium', label: '🟡 Trung bình' },
+  { value: 'high', label: '🔴 Cao' },
 ];
 
 const CATEGORY_OPTIONS = [
-  { value: 'work', label: 'Công việc' },
-  { value: 'personal', label: 'Cá nhân' },
-  { value: 'shopping', label: 'Mua sắm' },
-  { value: 'health', label: 'Sức khỏe' },
-  { value: 'education', label: 'Học tập' },
-  { value: 'other', label: 'Khác' },
+  { value: 'work', label: '💼 Công việc' },
+  { value: 'personal', label: '👤 Cá nhân' },
+  { value: 'shopping', label: '🛒 Mua sắm' },
+  { value: 'health', label: '🏥 Sức khỏe' },
+  { value: 'education', label: '📚 Học tập' },
+  { value: 'other', label: '🔧 Khác' },
 ];
 
 export function TodoForm({ 
@@ -107,56 +107,73 @@ export function TodoForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <Input
-        label="Tiêu đề *"
-        placeholder="Nhập tiêu đề todo..."
+        label="Tên Nhiệm Vụ"
+        placeholder="Nhập tên nhiệm vụ..."
         value={formData.title}
         onChange={handleChange('title')}
         error={errors.title}
+        variant="cosmic"
       />
 
       <Textarea
-        label="Mô tả"
-        placeholder="Nhập mô tả chi tiết (tùy chọn)..."
+        label="Mô Tả Chi Tiết"
+        placeholder="Mô tả chi tiết nhiệm vụ (tùy chọn)..."
         value={formData.description}
         onChange={handleChange('description')}
         error={errors.description}
         rows={3}
+        variant="cosmic"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Select
-          label="Độ ưu tiên"
+          label="Độ Ưu Tiên"
           value={formData.priority}
           onChange={handleChange('priority')}
           options={PRIORITY_OPTIONS}
           error={errors.priority}
+          variant="cosmic"
         />
 
         <Select
-          label="Danh mục"
+          label="Danh Mục"
           value={formData.category}
           onChange={handleChange('category')}
           options={CATEGORY_OPTIONS}
           error={errors.category}
+          variant="cosmic"
         />
       </div>
 
       <Input
-        label="Ngày hết hạn"
+        label="Ngày Hết Hạn"
         type="date"
         value={formData.dueDate}
         onChange={handleChange('dueDate')}
         error={errors.dueDate}
+        variant="cosmic"
       />
 
-      <div className="flex gap-2 pt-4">
-        <Button type="submit" variant="primary" className="flex-1">
+      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+        <Button 
+          type="submit" 
+          variant="cosmic" 
+          className="flex-1 text-base"
+          glow={true}
+        >
+          <span className="mr-2">🚀</span>
           {submitLabel}
         </Button>
         {onCancel && (
-          <Button type="button" variant="ghost" onClick={onCancel}>
+          <Button 
+            type="button" 
+            variant="secondary" 
+            onClick={onCancel}
+            className="sm:w-auto"
+          >
+            <span className="mr-2">❌</span>
             Hủy
           </Button>
         )}
