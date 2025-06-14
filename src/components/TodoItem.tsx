@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Todo } from '@/types';
+import { Todo, TodoFormData } from '@/types';
 import { Button } from '@/components/ui';
 import { TodoForm } from './TodoForm';
 import { 
@@ -16,14 +16,14 @@ interface TodoItemProps {
   todo: Todo;
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
-  onUpdate: (id: string, data: any) => void;
+  onUpdate: (id: string, data: TodoFormData) => void;
 }
 
 export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleUpdate = (data: any) => {
+  const handleUpdate = (data: TodoFormData) => {
     onUpdate(todo.id, data);
     setIsEditing(false);
   };

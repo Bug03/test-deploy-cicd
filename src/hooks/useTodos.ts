@@ -20,7 +20,11 @@ export function useTodos() {
       try {
         const parsedTodos = JSON.parse(savedTodos);
         // Convert date strings back to Date objects
-        const todosWithDates = parsedTodos.map((todo: any) => ({
+        const todosWithDates = parsedTodos.map((todo: Todo & { 
+          createdAt: string; 
+          updatedAt: string; 
+          dueDate?: string; 
+        }) => ({
           ...todo,
           createdAt: new Date(todo.createdAt),
           updatedAt: new Date(todo.updatedAt),
