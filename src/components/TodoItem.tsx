@@ -33,8 +33,11 @@ export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) 
 
   if (isEditing) {
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Chỉnh sửa Todo</h3>
+      <div className="bg-slate-800/50 backdrop-blur-md border-2 border-purple-500 pixel-border-glow p-6 animate-slideInFromSpace">
+        <h3 className="text-xl font-bold text-purple-300 mb-6 font-mono tracking-wider flex items-center">
+          <span className="text-2xl mr-3">✨</span>
+          CHỈNH SỬA NHIỆM VỤ
+        </h3>
         <TodoForm
           onSubmit={handleUpdate}
           initialData={{
@@ -44,7 +47,7 @@ export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) 
             category: todo.category,
             dueDate: todo.dueDate ? todo.dueDate.toISOString().split('T')[0] : '',
           }}
-          submitLabel="Cập nhật"
+          submitLabel="🔄 Cập nhật"
           onCancel={() => setIsEditing(false)}
         />
       </div>
@@ -52,21 +55,21 @@ export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) 
   }
 
   return (
-    <div className={`bg-white border rounded-lg p-4 transition-all hover:shadow-md ${
-      todo.completed ? 'opacity-75' : ''
-    } ${isTaskOverdue ? 'border-red-200 bg-red-50' : 'border-gray-200'}`}>
-      <div className="flex items-start gap-3">
-        {/* Checkbox */}
+    <div className={`bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-md border-2 pixel-border-glow p-4 md:p-6 transition-all duration-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.3)] ${
+      todo.completed ? 'opacity-60 border-green-400' : ''
+    } ${isTaskOverdue ? 'border-red-400 animate-pulse' : 'border-slate-600 hover:border-cyan-400'}`}>
+      <div className="flex items-start gap-4">
+        {/* Cosmic Checkbox */}
         <button
           onClick={() => onToggle(todo.id)}
-          className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+          className={`flex-shrink-0 w-6 h-6 border-2 flex items-center justify-center transition-all duration-300 pixel-border-glow ${
             todo.completed
-              ? 'bg-green-500 border-green-500 text-white'
-              : 'border-gray-300 hover:border-green-400'
+              ? 'bg-gradient-to-r from-green-500 to-emerald-500 border-green-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)]'
+              : 'border-cyan-400 hover:border-cyan-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] bg-slate-700/50'
           }`}
         >
           {todo.completed && (
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -76,33 +79,33 @@ export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) 
           )}
         </button>
 
-        {/* Nội dung */}
+        {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className={`text-lg font-medium ${
-              todo.completed ? 'line-through text-gray-500' : 'text-gray-900'
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-4">
+            <h3 className={`text-lg md:text-xl font-bold font-mono tracking-wide ${
+              todo.completed ? 'line-through text-gray-400' : 'text-cyan-100'
             }`}>
               {todo.title}
             </h3>
 
             {/* Priority badge */}
-            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${priorityColorClass}`}>
+            <span className={`inline-flex items-center px-3 py-1 border-2 text-xs font-bold font-mono tracking-wider self-start pixel-border-glow ${priorityColorClass}`}>
               {getPriorityLabel(todo.priority)}
             </span>
           </div>
 
           {/* Description */}
           {todo.description && (
-            <p className={`mt-1 text-sm ${
-              todo.completed ? 'text-gray-400' : 'text-gray-600'
+            <p className={`mt-2 text-sm font-mono ${
+              todo.completed ? 'text-gray-500' : 'text-slate-300'
             } ${!isExpanded && todo.description.length > 100 ? 'line-clamp-2' : ''}`}>
               {isExpanded ? todo.description : todo.description}
               {!isExpanded && todo.description.length > 100 && (
                 <button
                   onClick={() => setIsExpanded(true)}
-                  className="ml-1 text-blue-600 hover:text-blue-800 font-medium"
+                  className="ml-2 text-cyan-400 hover:text-cyan-300 font-bold font-mono border-b border-cyan-400"
                 >
-                  ... Xem thêm
+                  ... XEM THÊM
                 </button>
               )}
             </p>
@@ -111,57 +114,61 @@ export function TodoItem({ todo, onToggle, onDelete, onUpdate }: TodoItemProps) 
           {isExpanded && todo.description && todo.description.length > 100 && (
             <button
               onClick={() => setIsExpanded(false)}
-              className="mt-1 text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="mt-2 text-sm text-cyan-400 hover:text-cyan-300 font-bold font-mono border-b border-cyan-400"
             >
-              Thu gọn
+              THU GỌN
             </button>
           )}
 
-          {/* Metadata */}
-          <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-gray-500">
-            <span className="inline-flex items-center">
-              📁 {todo.category}
+          {/* Cosmic Metadata */}
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-xs font-mono">
+            <span className="inline-flex items-center px-2 py-1 bg-purple-900/50 border border-purple-400 text-purple-300">
+              📁 {todo.category.toUpperCase()}
             </span>
             
-            <span className="inline-flex items-center">
-              ⏰ Tạo: {formatDate(todo.createdAt)}
+            <span className="inline-flex items-center px-2 py-1 bg-blue-900/50 border border-blue-400 text-blue-300">
+              ⏰ {formatDate(todo.createdAt)}
             </span>
 
             {todo.dueDate && (
-              <span className={`inline-flex items-center ${
-                isTaskOverdue ? 'text-red-600 font-medium' : ''
+              <span className={`inline-flex items-center px-2 py-1 border ${
+                isTaskOverdue 
+                  ? 'bg-red-900/50 border-red-400 text-red-300 animate-pulse' 
+                  : 'bg-green-900/50 border-green-400 text-green-300'
               }`}>
-                📅 Hạn: {formatDate(todo.dueDate)}
-                {isTaskOverdue && ' (Quá hạn)'}
+                📅 {formatDate(todo.dueDate)}
+                {isTaskOverdue && ' (QUÁ HẠN)'}
               </span>
             )}
 
             {todo.updatedAt.getTime() !== todo.createdAt.getTime() && (
-              <span className="inline-flex items-center">
-                ✏️ Sửa: {formatDateTime(todo.updatedAt)}
+              <span className="inline-flex items-center px-2 py-1 bg-yellow-900/50 border border-yellow-400 text-yellow-300">
+                ✏️ {formatDateTime(todo.updatedAt)}
               </span>
             )}
           </div>
         </div>
       </div>
 
-      {/* Actions */}
-      <div className="mt-4 flex gap-2">
+      {/* Cosmic Actions */}
+      <div className="mt-6 flex flex-col sm:flex-row gap-3">
         <Button
           size="sm"
-          variant="ghost"
+          variant="secondary"
           onClick={() => setIsEditing(true)}
-          className="text-blue-600 hover:text-blue-800"
+          className="flex-1 sm:flex-none text-cyan-300 hover:text-cyan-100"
         >
-          ✏️ Sửa
+          <span className="mr-2">✏️</span>
+          CHỈNH SỬA
         </Button>
         <Button
           size="sm"
-          variant="ghost"
+          variant="danger"
           onClick={() => onDelete(todo.id)}
-          className="text-red-600 hover:text-red-800"
+          className="flex-1 sm:flex-none text-red-300 hover:text-red-100"
         >
-          🗑️ Xóa
+          <span className="mr-2">🗑️</span>
+          XÓA
         </Button>
       </div>
     </div>

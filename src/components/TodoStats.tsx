@@ -11,9 +11,9 @@ export function TodoStats({ stats }: TodoStatsProps) {
 
   return (
     <div className="bg-slate-800/30 backdrop-blur-md border-2 border-slate-600 pixel-border-glow p-4 md:p-6 hover:border-green-400 transition-all duration-300">
-      <h2 className="text-lg md:text-xl font-bold text-green-300 mb-6 font-mono tracking-wider flex items-center">
+      <h2 className="text-lg md:text-xl font-bold text-purple-300 mb-6 font-mono tracking-wider flex items-center">
         <span className="text-2xl mr-3">📊</span>
-        THỐNG KÊ HỆ THỐNG
+        THỐNG KÊ NHIỆM VỤ
       </h2>
       
       {/* Progress bar */}

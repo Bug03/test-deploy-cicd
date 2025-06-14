@@ -43,28 +43,28 @@ export function TodoList({
     <div className="space-y-4">
       {/* Bulk actions */}
       {todos.length > 0 && (
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between p-4 bg-slate-800/50 border-2 border-slate-600 pixel-border-glow">
           <div className="flex items-center gap-3">
             <Button
-              variant="ghost"
+              variant="cosmic"
               size="sm"
               onClick={() => onToggleAll(!allCompleted)}
-              className={allCompleted ? 'text-green-600' : 'text-gray-600'}
+              className={allCompleted ? 'text-green-300' : 'text-cyan-300'}
             >
               {allCompleted ? '☑️ Bỏ chọn tất cả' : '☑️ Chọn tất cả'}
             </Button>
             
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-slate-300 font-mono">
               {completedCount} / {todos.length} hoàn thành
             </span>
           </div>
 
           {hasCompleted && (
             <Button
-              variant="ghost"
+              variant="danger"
               size="sm"
               onClick={onClearCompleted}
-              className="text-red-600 hover:text-red-800"
+              className="text-red-300 hover:text-red-100"
             >
               🗑️ Xóa đã hoàn thành ({completedCount})
             </Button>
